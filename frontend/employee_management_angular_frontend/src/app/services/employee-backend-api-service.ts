@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Employee } from '../employee-interface';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeBackendApiService {
   // default4200 localhost url
-  private serverApiUrl = '';
+  private serverApiUrl = environment.springBackendCruApiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -20,8 +21,8 @@ export class EmployeeBackendApiService {
   }
 
   // read
-  public readEmployyes(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${this.serverApiUrl}/get-a;;-employees`);
+  public readAllEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.serverApiUrl}/get-all-employees`);
   }
 
   // update
